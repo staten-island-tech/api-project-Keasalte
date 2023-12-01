@@ -1,15 +1,5 @@
 
-function cardCreator(charactercards) {
-  document.querySelector(".app").insertAdjacentHTML(
-    "beforeend",
-    `<div class="card">
-      <img src=${data.url} alt="" class="card-img">
-    </div>`
-  );
-}
-
-
-const URL = "http://shibe.online/api/shibes?count=2&urls=true&httpsUrls=true"
+const URL = "http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true"
 
 async function getData(URL){
   try {
@@ -22,11 +12,10 @@ async function getData(URL){
 
     const data = await response.json();
     console.log(data);
-    data.forEach((petimg) => 
+    document.querySelector("image1").src = data;
 
-    )
-    document.getElementById("Image1").src = URL.url
   } 
+
   catch (error) {
     document.querySelector("h1").textContent = error;
     
