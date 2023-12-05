@@ -17,7 +17,7 @@ async function getData(URL){
       "beforeend",
       `
       <div class="card">
-      <img src="${picturelink}" alt="">
+      <img src="${picturelink}" alt=""><br>
       <button class="Choose">Choose this!</button>
       </div>
       `

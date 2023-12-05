@@ -1,11 +1,17 @@
-
 body,
 html,
 * {
-  font-size: 25px;
   box-sizing: border-box;
   margin: 20px;
   padding: 0px;
+}
+
+h1{
+ font-size: 60px;
+}
+
+body{
+  background-color:darkslategray
 }
 
 img{
@@ -16,19 +22,56 @@ img{
 }
 
 #app {
+  margin-top: 10rem;
   display: flex;
   width: 100%;
   flex-flow: row wrap;
 }
 
+.center{
+  text-align: center;
+  color: #f7b603;
+  top:0;
+  left:0;
+  background-color: rgb(61, 124, 124);
+  position: fixed;
+  width:68%
+}
+
+.centerbar{
+  text-align: center;
+  color: #f7b603;
+  background-color: rgb(76, 155, 155);
+}
+
+.scorebar{
+  text-align: center;
+  color: #f7b603;
+  top:0;
+  right:0;
+  background-color: rgb(61, 124, 124);
+  position: fixed;
+  height:100%;
+  width:31%
+}
+
+.score{
+  text-align: center;
+  color: #f7b603;
+  background-color: rgb(76, 155, 155);
+  height:93%;
+}
+
 .card {
   height: auto;
-  width: 20vw;
+  width: 30vw;
   border-radius: 25px;
   justify-content: space-between;
   text-align: center;
   display: flexbox;
   transition: all 1s;
+  background-color: azure;
+  position: absolute;
 }
 
 .card-img {
@@ -39,12 +82,12 @@ img{
 }
 
 .card-text-color {
-  color: var(--text);
+  color: aliceblue;
   display: flexbox;
 }
 
 .card-header-color {
-  color: var(--text);
+  color: aliceblue;
   display: flexbox;
   padding-top: 10px;
 }
@@ -57,13 +100,15 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 25px;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
+  color: aliceblue;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
