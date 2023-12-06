@@ -64,7 +64,7 @@ img{
 }
 
 .card {
-  height: auto;
+  transform: translateY(25%);
   width: 28vw;
   justify-content: space-between;
   text-align: center;
