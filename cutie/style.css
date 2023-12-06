@@ -57,28 +57,21 @@ img{
 
 .score{
   text-align: center;
+  font-size: larger;
   color: #f7b603;
   background-color: rgb(76, 155, 155);
-  height:93%;
+  height:93%; 
 }
 
 .card {
   height: auto;
-  width: 30vw;
-  border-radius: 25px;
+  width: 28vw;
   justify-content: space-between;
   text-align: center;
   display: flexbox;
   transition: all 1s;
-  background-color: azure;
-  position: absolute;
-}
-
-.card-img {
-  width: 65%;
-  margin-left: 10%;
-  margin-right: 10%;
-
+  background-color: rgba(240, 255, 255, 0.849);
+  
 }
 
 .card-text-color {

@@ -22,12 +22,8 @@ async function getData(URL){
       </div>
       `
     ))}
-
-  
-
   catch (error) {
     document.querySelector("h1").textContent = error;
-    
   }
 }
 getData(URL);
