@@ -1,5 +1,7 @@
 
-const URL = "http://shibe.online/api/shibes?count=2&urls=true&httpsUrls=true"
+const URL = "http://shibe.online/api/shibes?count=100&urls=true&httpsUrls=true"
+
+const nom = [];
 
 async function getData(URL){
   try {
@@ -12,7 +14,17 @@ async function getData(URL){
 
     const data = await response.json();
     console.log(data);
-    let contain = document.querySelector('#app');
+    nom.push(data);
+    console.log
+
+  }
+  catch (error) {
+    document.querySelector("h1").textContent = error;
+  }
+}
+getData(URL);
+
+/*     let contain = document.querySelector('#app');
     data.forEach((picturelink)=> contain.insertAdjacentHTML(
       "beforeend",
       `
@@ -21,9 +33,4 @@ async function getData(URL){
       <button class="Choose">Choose this!</button>
       </div>
       `
-    ))}
-  catch (error) {
-    document.querySelector("h1").textContent = error;
-  }
-}
-getData(URL);
+    )) */
