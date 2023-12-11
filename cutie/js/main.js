@@ -1,6 +1,8 @@
 //B7IMQ6V9OVTI4OFE
-const URL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=IBM&apikey=B7IMQ6V9OVTI4OFE"
+//lookup selectelement
+//https://www.w3schools.com/js/js_graphics_chartjs.asp
 
+const URL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=NVDA&apikey=B7IMQ6V9OVTI4OFE"
 const nom = [];
 
 async function getData(URL){
@@ -24,21 +26,34 @@ async function getData(URL){
 }
 getData(URL);
 
-/* let rando = Math.random() *  */
-dates = Object.keys(nom[0]["Monthly Time Series"])
-const nom1 = [];
-nom1.push(dates);
-console.log(dates);
-x = Math.floor(Math.random() * dates.length);
-console.log(x);
+async function getRandomDates(nom){
+  try {
+  await getData(URL);
+  const dates = Object.keys(nom[0]["Monthly Time Series"])
+  const nom1 = [];
+/*   console.log(dates); */
+  let x = Math.floor(Math.random() * dates.length);
+  console.log(x);
+  nom1.push(dates[x]);
+  for(let i = 0; i < 5; i++){
+    x -=  1;
+    nom1.push(dates[x]);
+  }
+  console.log(nom1);
+  } catch (error) {
+    document.querySelector("h1").textContent = error;
+  }
+}
+getRandomDates(nom);
 
-/*     let contain = document.querySelector('#app');
-    data.forEach((picturelink)=> contain.insertAdjacentHTML(
-      "beforeend",
-      `
-      <div class="card">
-      <img src="${picturelink}" alt=""><br>
-      <button class="Choose">Choose this!</button>
-      </div>
-      `
-    )) */
+async function gettingValues(nom,nom1){
+  try {
+    await getRandomDates(nom);
+    nom1.forEach((date) => nom[0]["Monthly Time Series"][date]["4. close"])
+    console.log(nom);
+  } catch (error) {
+    document.querySelector("h1").textContent = error;
+  }
+}
+
+gettingValues(nom,nom1);
