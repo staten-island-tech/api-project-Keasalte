@@ -23,9 +23,14 @@ img{
 
 #app {
   margin-top: 10rem;
+  margin-right: 66rem;
   display: flex;
-  width: 100%;
-  flex-flow: row wrap;
+  transform: translateY(25%);
+  background-color: rgb(220, 255, 255);;
+}
+
+#Chart{
+  object-fit: contain;
 }
 
 .center{

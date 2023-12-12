@@ -4,7 +4,8 @@
 
 const URL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=NVDA&apikey=B7IMQ6V9OVTI4OFE"
 const nom = [];
-
+const nom1 = [];
+const nom2 = [];
 async function getData(URL){
   try {
     const response = await fetch(URL);
@@ -30,7 +31,6 @@ async function getRandomDates(nom){
   try {
   await getData(URL);
   const dates = Object.keys(nom[0]["Monthly Time Series"])
-  const nom1 = [];
 /*   console.log(dates); */
   let x = Math.floor(Math.random() * dates.length);
   console.log(x);
@@ -49,11 +49,27 @@ getRandomDates(nom);
 async function gettingValues(nom,nom1){
   try {
     await getRandomDates(nom);
-    nom1.forEach((date) => nom[0]["Monthly Time Series"][date]["4. close"])
+    nom1.forEach((date) => nom2.push(nom[0]["Monthly Time Series"][date]["4. close"]))
     console.log(nom);
+    console.log(nom2);
+    new Chart("Chart", {
+      type: "line",
+      data: {
+        labels: nom1,
+        datasets: [{
+          backgroundColor:"rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: nom2
+        }]
+      },
+      options:{
+        legend: {display:false}
+      }
+    });
   } catch (error) {
     document.querySelector("h1").textContent = error;
   }
 }
 
 gettingValues(nom,nom1);
+
