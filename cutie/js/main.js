@@ -1,4 +1,4 @@
-//B7IMQ6V9OVTI4OFE
+ //B7IMQ6V9OVTI4OFE
 //lookup selectelement
 //https://www.w3schools.com/js/js_graphics_chartjs.asp
 
@@ -31,13 +31,16 @@ async function getRandomDates(nom){
   try {
   await getData(URL);
   const dates = Object.keys(nom[0]["Monthly Time Series"])
-/*   console.log(dates); */
   let x = Math.floor(Math.random() * dates.length);
   console.log(x);
   nom1.push(dates[x]);
   for(let i = 0; i < 5; i++){
-    x -=  1;
-    nom1.push(dates[x]);
+    let strings = x.slice(-2);
+    let string2 = strings - 1
+    let string3 = x.slice(0, -2);
+    let finalstring = string3 + string2
+  console.log(finalstring)
+  nom1.push(finalstring);
   }
   console.log(nom1);
   } catch (error) {
@@ -72,4 +75,6 @@ async function gettingValues(nom,nom1){
 }
 
 gettingValues(nom,nom1);
+
+ 
 

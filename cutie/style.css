@@ -29,10 +29,6 @@ img{
   background-color: rgb(220, 255, 255);;
 }
 
-#Chart{
-  object-fit: contain;
-}
-
 .center{
   text-align: center;
   color: #f7b603;
