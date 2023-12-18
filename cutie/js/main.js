@@ -29,21 +29,27 @@ getData(URL);
 
 async function getRandomDates(nom){
   try {
-  await getData(URL);
-  const dates = Object.keys(nom[0]["Monthly Time Series"])
+  await getData(URL); */
+  let finalstring = [];
+  const nom1 = ["2022-11-21","2021-08-09", "2023-07-25","2021-11-16","2021-08-24", "2023-07-11","2022-11-29","2021-08-03", "2023-07-215",];
+  const dates = [1,2,3,4,5,6,7,8,9];  //Object.keys(nom[0]["Monthly Time Series"])
   let x = Math.floor(Math.random() * dates.length);
   console.log(x);
-  nom1.push(dates[x]);
-  for(let i = 0; i < 5; i++){
-    let strings = nom1.forEach((date)=> date.slice(-2));
-    let string2 = strings - 1
-    let string3 = x.slice(0, -2);
-    let finalstring = string3 + string2
-  console.log(finalstring)
-  nom1.push(finalstring);
+  //nom1.push(dates[x]);
+for(let k = 0; k < 5; k++, x--){
+  let strings = nom1.map((date)=> date.slice(-2));
+  console.log(strings);
+  let string2 = nom1.map((date)=>date.slice(0, -2));
+
+  let l = Math.min(strings.length,string2.length);
+  for(let i = 0; i < l; i++){
+  finalstring.push(string2[i],strings[i]);
   }
+}
+console.log(finalstring);
+/*
   console.log(nom1);
-  } catch (error) {
+   } catch (error) {
     document.querySelector("h1").textContent = error;
   }
 }
@@ -75,12 +81,7 @@ async function gettingValues(nom,nom1){
 }
 
 gettingValues(nom,nom1);
+ 
+
+
  */
-
-const nom = ["2022-14-15","2023-12-23","2019-04-12"];
-let strings = nom.map((date)=> date.slice(-2));
-console.log(strings);
-
-let string3 = nom.map((date)=>date.slice(0, -2));
-let finalstring = string3 + string2
-console.log(finalstring);
