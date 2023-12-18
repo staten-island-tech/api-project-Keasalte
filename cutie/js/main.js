@@ -1,4 +1,4 @@
- //B7IMQ6V9OVTI4OFE
+/*  //B7IMQ6V9OVTI4OFE
 //lookup selectelement
 //https://www.w3schools.com/js/js_graphics_chartjs.asp
 
@@ -35,7 +35,7 @@ async function getRandomDates(nom){
   console.log(x);
   nom1.push(dates[x]);
   for(let i = 0; i < 5; i++){
-    let strings = x.slice(-2);
+    let strings = nom1.forEach((date)=> date.slice(-2));
     let string2 = strings - 1
     let string3 = x.slice(0, -2);
     let finalstring = string3 + string2
@@ -75,6 +75,12 @@ async function gettingValues(nom,nom1){
 }
 
 gettingValues(nom,nom1);
+ */
 
- 
+const nom = ["2022-14-15","2023-12-23","2019-04-12"];
+let strings = nom.map((date)=> date.slice(-2));
+console.log(strings);
 
+let string3 = nom.map((date)=>date.slice(0, -2));
+let finalstring = string3 + string2
+console.log(finalstring);
