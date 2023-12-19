@@ -1,25 +1,25 @@
-/*  //B7IMQ6V9OVTI4OFE
+  //B7IMQ6V9OVTI4OFE
+  //5E6XQ7EEC3KSRLTP
 //lookup selectelement
 //https://www.w3schools.com/js/js_graphics_chartjs.asp
 
-const URL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=NVDA&apikey=B7IMQ6V9OVTI4OFE"
+//const URL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=NVDA&apikey=5E6XQ7EEC3KSRLTP"
+const URL = "https://api.stockdata.org/v1/data/eod?symbols=TSLA&api_token=b1WoSzHY2m7tsLycpVyt3CywMOGNIzgSD8JB4UB6";
 const nom = [];
 const nom1 = [];
 const nom2 = [];
-async function getData(URL){
+
+ async function getData(URL){
   try {
     const response = await fetch(URL);
     console.log(response);
-    
     if( response.status != 200){
       throw new Error(response.statusText);
     }
-
     const data = await response.json();
-    console.log(data);
     nom.push(data);
     console.log(nom);
-    console.log(Object.keys(nom[0]["Monthly Time Series"]));
+    console.log(Object.keys(nom[0]["data"]));
   }
   catch (error) {
     document.querySelector("h1").textContent = error;
@@ -29,26 +29,18 @@ getData(URL);
 
 async function getRandomDates(nom){
   try {
-  await getData(URL); */
-  let finalstring = [];
-  const nom1 = ["2022-11-21","2021-08-09", "2023-07-25","2021-11-16","2021-08-24", "2023-07-11","2022-11-29","2021-08-03", "2023-07-215",];
-  const dates = [1,2,3,4,5,6,7,8,9];  //Object.keys(nom[0]["Monthly Time Series"])
+  await getData(URL); 
+
+  const nom1 = [];
+  const dates = Object.keys(nom[0]["data"])
   let x = Math.floor(Math.random() * dates.length);
   console.log(x);
-  //nom1.push(dates[x]);
-for(let k = 0; k < 5; k++, x--){
-  let strings = nom1.map((date)=> date.slice(-2));
-  console.log(strings);
-  let string2 = nom1.map((date)=>date.slice(0, -2));
-
-  let l = Math.min(strings.length,string2.length);
-  for(let i = 0; i < l; i++){
-  finalstring.push(string2[i],strings[i]);
+  
+  for(let i = x; i < x+5; i++){
+    nom1.push(dates[i]);
   }
-}
-console.log(finalstring);
-/*
-  console.log(nom1);
+console.log(nom1);
+
    } catch (error) {
     document.querySelector("h1").textContent = error;
   }
@@ -58,13 +50,13 @@ getRandomDates(nom);
 async function gettingValues(nom,nom1){
   try {
     await getRandomDates(nom);
-    nom1.forEach((date) => nom2.push(nom[0]["Monthly Time Series"][date]["4. close"]))
-    console.log(nom);
+    nom1.forEach((date) => console.log(nom[0]["data"][date]["close"]))
     console.log(nom2);
-    new Chart("Chart", {
+    console.log("iinasnao")
+/*     new Chart("Chart", {
       type: "line",
       data: {
-        labels: nom1,
+        labels: finalstring,
         datasets: [{
           backgroundColor:"rgba(0,0,255,1.0)",
           borderColor: "rgba(0,0,255,0.1)",
@@ -72,9 +64,9 @@ async function gettingValues(nom,nom1){
         }]
       },
       options:{
-        legend: {display:false}
+        legend: {display:true}
       }
-    });
+    }); */
   } catch (error) {
     document.querySelector("h1").textContent = error;
   }
@@ -83,5 +75,3 @@ async function gettingValues(nom,nom1){
 gettingValues(nom,nom1);
  
 
-
- */
