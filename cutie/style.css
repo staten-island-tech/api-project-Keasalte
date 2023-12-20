@@ -6,6 +6,12 @@ html,
   padding: 0px;
 }
 
+#chart {
+  position: relative;
+  z-index: 10;
+  transform: translateX(10%);
+}
+
 h1{
  font-size: 60px;
 }

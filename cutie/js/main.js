@@ -8,6 +8,7 @@ const URL = "https://api.stockdata.org/v1/data/eod?symbols=TSLA&api_token=b1WoSz
 const nom = [];
 const nom1 = [];
 const nom2 = [];
+const nom3 = [];
 
  async function getData(URL){
   try {
@@ -30,16 +31,23 @@ getData(URL);
 async function getRandomDates(nom){
   try {
   await getData(URL); 
-
-  const nom1 = [];
+  nom1 = [];
   const dates = Object.keys(nom[0]["data"])
   let x = Math.floor(Math.random() * dates.length);
   console.log(x);
-  
   for(let i = x; i < x+5; i++){
     nom1.push(dates[i]);
+    console.log(nom1);
   }
-console.log(nom1);
+
+  nom1.forEach((closing) => {
+    nom2.push(nom[0]["data"][closing]["close"]);
+  });
+  console.log(nom2);
+  console.log('hehehehaw');
+
+  nom1.forEach((date) => nom3.push(nom[0]["data"][date]["date"].slice(0,10)));
+  console.log(nom3);
 
    } catch (error) {
     document.querySelector("h1").textContent = error;
@@ -47,16 +55,14 @@ console.log(nom1);
 }
 getRandomDates(nom);
 
-async function gettingValues(nom,nom1){
+async function chart(nom2,nom3){
   try {
     await getRandomDates(nom);
-    nom1.forEach((date) => console.log(nom[0]["data"][date]["close"]))
-    console.log(nom2);
-    console.log("iinasnao")
-/*     new Chart("Chart", {
+
+    new Chart("Chart", {
       type: "line",
       data: {
-        labels: finalstring,
+        labels: nom3,
         datasets: [{
           backgroundColor:"rgba(0,0,255,1.0)",
           borderColor: "rgba(0,0,255,0.1)",
@@ -64,14 +70,15 @@ async function gettingValues(nom,nom1){
         }]
       },
       options:{
-        legend: {display:true}
+        legend: {display:false}
       }
-    }); */
+    }); 
   } catch (error) {
     document.querySelector("h1").textContent = error;
   }
 }
 
-gettingValues(nom,nom1);
+chart(nom2,nom3);
+
  
 
