@@ -4,12 +4,16 @@
 //https://www.w3schools.com/js/js_graphics_chartjs.asp
 
 //const URL = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=NVDA&apikey=5E6XQ7EEC3KSRLTP"
-const URL =
-  "https://api.stockdata.org/v1/data/eod?symbols=TSLA&api_token=b1WoSzHY2m7tsLycpVyt3CywMOGNIzgSD8JB4UB6";
+const URL ="https://api.stockdata.org/v1/data/eod?symbols=TSLA&api_token=b1WoSzHY2m7tsLycpVyt3CywMOGNIzgSD8JB4UB6";
 const nom = [];
 let nom1 = [];
 const nom2 = [];
 const nom3 = [];
+
+const DOM = {
+  Up: document.getElementById("colorthing"),
+  Down: document.getElementById("colorthing2")
+};
 
 async function getData(URL) {
   try {
@@ -28,7 +32,6 @@ async function getData(URL) {
 }
 
 async function getRandomDates(nom) {
-  console.log("hi guys")
   try {
     await getData(URL);
     const dates = Object.keys(nom[0]["data"]);
@@ -80,4 +83,64 @@ async function chart(nom2) {
     document.querySelector("h1").textContent = error;
   }
 }
-chart(nom2, nom3);
+
+async function nextValue(){
+  try {
+    await chart(nom2);
+    console.log(nom1);
+    console.log(nom);
+    const seep = nom1[4];
+    console.log(seep);
+    const keep =  parseInt(seep) + 1
+    console.log(keep);
+    const s = nom[0]["data"][seep]["close"]
+    const k = nom[0]["data"][keep]["close"] 
+    console.log(s);
+    console.log(k);
+    DOM.Up.addEventListener("click",function (){
+      if( k > s ){
+        document.querySelector('body').insertAdjacentHTML(
+          "beforeend",
+          `<div class="card">
+            <h2 class = "text">you winn</h2>
+          </div>`
+        );
+        console.log("W")
+      }
+      else{
+        document.querySelector('body').insertAdjacentHTML(
+          "beforeend",
+          `<div class="card">
+            <h2 class = "text">you losee</h2>
+          </div>`
+        );
+        console.log("L")
+      }
+    })
+    DOM.Down.addEventListener("click",function (){
+      if( k < s ){
+        document.querySelector('body').insertAdjacentHTML(
+          "beforeend",
+          `<div class="card">
+            <h2 class = "text">you winn</h2>
+          </div>`
+        );
+        console.log("W")
+      }
+      else{
+        document.querySelector('body').insertAdjacentHTML(
+          "beforeend",
+          `<div class="card">
+            <h2 class = "text">you losee</h2>
+          </div>`
+        );
+        console.log("L")
+      }
+    })
+
+  } catch (error) {
+    document.querySelector("h1").textContent = error;
+  }
+}
+
+nextValue();
