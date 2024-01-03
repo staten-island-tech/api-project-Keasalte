@@ -55,7 +55,7 @@ img{
 
 .centerbar{
   text-align: center;
-  color: #a5aed2;
+  color: rgb(10, 47, 82);
   background-color: #f4f8fd;
 }
 
@@ -77,7 +77,7 @@ img{
 .score{
   text-align: center;
   font-size: larger;
-  color: #a5aed2;
+  color: rgb(10, 47, 82);
   background-color: #f4f8fd;
   height:93%; 
 }
