@@ -83,14 +83,16 @@ img{
 }
 
 .card {
-  transform: translateY(25%);
   width: 28vw;
   justify-content: space-between;
   text-align: center;
   display: flexbox;
   transition: all 1s;
   background-color: rgba(240, 255, 255, 0.849);
-  
+  z-index: 1;
+  position: absolute;
+  top: 40%;
+  left:30%;
 }
 
 .card-text-color {

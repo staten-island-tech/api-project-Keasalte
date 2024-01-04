@@ -9,11 +9,20 @@ const nom = [];
 let nom1 = [];
 const nom2 = [];
 const nom3 = [];
+let count = 0;
+let count2 = 0;
 
 const DOM = {
   Up: document.getElementById("colorthing"),
-  Down: document.getElementById("colorthing2")
+  Down: document.getElementById("colorthing2"),
+  count: document.getElementById("counter"),
+  count2: document.getElementById("counter2"),
 };
+
+function Update(){
+  DOM.count.innerText = `Win Counter: ${count}`;
+  DOM.count2.innerText = `Lose Counter: ${count2}`;
+}
 
 async function getData(URL) {
   try {
@@ -99,42 +108,18 @@ async function nextValue(){
     console.log(k);
     DOM.Up.addEventListener("click",function (){
       if( k > s ){
-        document.querySelector('body').insertAdjacentHTML(
-          "beforeend",
-          `<div class="card">
-            <h2 class = "text">you winn</h2>
-          </div>`
-        );
-        console.log("W")
+        Win();
       }
       else{
-        document.querySelector('body').insertAdjacentHTML(
-          "beforeend",
-          `<div class="card">
-            <h2 class = "text">you losee</h2>
-          </div>`
-        );
-        console.log("L")
+        Lose();
       }
     })
     DOM.Down.addEventListener("click",function (){
       if( k < s ){
-        document.querySelector('body').insertAdjacentHTML(
-          "beforeend",
-          `<div class="card">
-            <h2 class = "text">you winn</h2>
-          </div>`
-        );
-        console.log("W")
+        Win();
       }
       else{
-        document.querySelector('body').insertAdjacentHTML(
-          "beforeend",
-          `<div class="card">
-            <h2 class = "text">you losee</h2>
-          </div>`
-        );
-        console.log("L")
+        Lose();
       }
     })
 
@@ -144,3 +129,40 @@ async function nextValue(){
 }
 
 nextValue();
+
+
+function Win(){
+  document.querySelector('body').insertAdjacentHTML(
+    "beforeend",
+    `<dialog class="card">
+      <h2 class = "text">you winn</h2>
+      <button id="close" autofocus> click to return </button>
+    </dialog>`
+  );
+  document.querySelector("dialog").showModal();
+  console.log("W")
+  count++;
+  Update();
+
+  document.getElementById("close").addEventListener("click",function(){
+      this.parentElement.remove();
+    })
+}
+
+function Lose(){
+  document.querySelector('body').insertAdjacentHTML(
+    "beforeend",
+    `<dialog class="card">
+      <h2 class = "text">you losee</h2>
+      <button id="close" autofocus> click to return </button>
+    </dialog>`
+  );
+  document.querySelector("dialog").showModal();
+  console.log("L")
+  count2++;
+  Update();
+  document.getElementById("close").addEventListener("click",function(){
+    this.parentElement.remove();
+  })
+}
+
