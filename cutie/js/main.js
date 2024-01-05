@@ -7,16 +7,19 @@
 const URL ="https://api.stockdata.org/v1/data/eod?symbols=TSLA&api_token=b1WoSzHY2m7tsLycpVyt3CywMOGNIzgSD8JB4UB6";
 const nom = [];
 let nom1 = [];
-const nom2 = [];
-const nom3 = [];
+let nom2 = [];
+let nom3 = [];
 let count = 0;
 let count2 = 0;
+
+let charting = null;
 
 const DOM = {
   Up: document.getElementById("colorthing"),
   Down: document.getElementById("colorthing2"),
   count: document.getElementById("counter"),
   count2: document.getElementById("counter2"),
+  chart: document.getElementById("Chart"),
 };
 
 function Update(){
@@ -47,6 +50,8 @@ async function getRandomDates(nom) {
     let x = Math.floor(Math.random() * dates.length);
     console.log(x);
     nom1 = [];
+    nom2 = [];
+    nom3 = [];
     for (let i = x; i < x + 5; i++) {
       nom1.push(dates[i]);
       console.log(nom1);
@@ -68,24 +73,25 @@ async function getRandomDates(nom) {
   }
 }
 
-async function chart(nom2) {
+async function chart() {
   try {
     await getRandomDates(nom);
     let bottomdate = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5",];
-    new Chart("Chart", {
+    charting = new Chart(DOM.chart, {
       type: "line",
       data: {
         labels: bottomdate,
         datasets: [
           {
+            fill: true,
             backgroundColor: "rgba(0,0,255,1.0)",
-            borderColor: "rgba(0,0,255,0.1)",
+            borderColor: "rgba(0,0,255,1.0)",
             data: nom2,
           },
         ],
       },
       options: {
-        legend: { display: false },
+        legend: { display:true, position:'top',},
       },
     });
   } catch (error) {
@@ -95,13 +101,9 @@ async function chart(nom2) {
 
 async function nextValue(){
   try {
-    await chart(nom2);
-    console.log(nom1);
-    console.log(nom);
+    await chart();
     const seep = nom1[4];
-    console.log(seep);
     const keep =  parseInt(seep) + 1
-    console.log(keep);
     const s = nom[0]["data"][seep]["close"]
     const k = nom[0]["data"][keep]["close"] 
     console.log(s);
@@ -109,17 +111,21 @@ async function nextValue(){
     DOM.Up.addEventListener("click",function (){
       if( k > s ){
         Win();
+        resetchart();
       }
       else{
         Lose();
+        resetchart();
       }
     })
     DOM.Down.addEventListener("click",function (){
       if( k < s ){
         Win();
+        resetchart();
       }
       else{
         Lose();
+        resetchart();
       }
     })
 
@@ -130,6 +136,12 @@ async function nextValue(){
 
 nextValue();
 
+
+function resetchart(){
+  charting.destroy();
+chart();
+DOM.chart.update();
+} 
 
 function Win(){
   document.querySelector('body').insertAdjacentHTML(
