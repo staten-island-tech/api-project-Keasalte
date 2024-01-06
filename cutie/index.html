@@ -10,28 +10,35 @@
   <body>
 
     <div class="center">
-      <div class="centerbar"><h1>Higher or Lower? <br>- Nvidia Edition -</h1></div>
+      <div class="centerbar">
+        <h1>Higher or Lower? </h1>
+        <h2>-Select The Company!</h2>
+        <h2 id="counter3"> Current Company: TSLA</h2>
+        <button class="button-1" role="button" id="PZZA">Papa John's</button>
+        <button class="button-1" role="button" id="NVDA">Nvidia</button>
+        <button class="button-1" role="button" id="AMZN">Amazon</button>
+        <button class="button-1" role="button" id="TSLA">Tesla</button>
+      </div>
     </div>
     <div id="app"> 
-      <h2>Graph of Nvidia stock price for 5 consecutive days: </h2>
-    <canvas id="Chart" style="width:100%;max-width:830px"></canvas>
-    
+    <canvas id="Chart" style="width:100%"></canvas>
     </div>
 
     <div class="scorebar"> 
       <div class="score">
+        <h3>Is the stock price for the next day higher or lower?</h3>
         <h2 id="counter">Win Counter: 0</h2>
         <h2 id="counter2">Lose Counter: 0</h2>
-        <h3>Is the stock price for the day higher or lower?</h3>
+
         <div class = "scoremessage">
           <div class="700">
             <button id="colorthing">
-              <div class="up" alt = "up"></div>
+              <div class="up" alt = "Button for Higher"></div>
             </button>
           </div>
           <div class="700">
             <button id="colorthing2">
-              <div class="down" alt="down"></div>
+              <div class="down" alt="Button for Lower"></div>
             </button>
       </div></div></div></div>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
